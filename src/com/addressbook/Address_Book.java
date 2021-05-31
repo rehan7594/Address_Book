@@ -99,7 +99,7 @@ public class Address_Book {
 			System.out.println(list);
 	}
 
-	public void editContact(Contact c, int index,String f_name ) {
+	public void editContact(Contact c, String f_name ) {
 		for (int i = 0; i < list.size(); i++) {
 			c = (Contact)list.get(i);
 			if (f_name.equals(c.getfirstName())) {
@@ -125,7 +125,17 @@ public class Address_Book {
 		}
 	}
 
+	public void deleteContact(Contact c,String f_name){
+		for(int i = 0; i < list.size(); i++){
+			c = (Contact)list.get(i);
+			if(f_name.equals(c.getfirstName())){
+				list.remove(i);
+			}
+		}
+	}
+
 	public static void main(String[] args) {
+
 		Address_Book book=new Address_Book();
 		Contact c;
 
@@ -136,6 +146,7 @@ public class Address_Book {
 			System.out.println("1.Add contact  ");
 			System.out.println("2.Display all contact ");
 			System.out.println("3.Edit Contact ");
+			System.out.println("4.Delete Contact ");
 
 			option=s.nextInt();
 			c=new Contact();
@@ -152,8 +163,12 @@ public class Address_Book {
 			case 3:
 				System.out.println("Enter first name that you want to edit:");
 				f_name=sc.nextLine();
-				int index=list.indexOf(f_name);
-				book.editContact(c,index,f_name);
+				book.editContact(c,f_name);
+				break;
+			case 4:
+				System.out.println("Enter first name that you want to delete:");
+				f_name=sc.nextLine();
+				book.deleteContact(c,f_name);
 				break;
 			default:
 				System.out.println("Enter valid option");
@@ -165,4 +180,3 @@ public class Address_Book {
 		while (option!=0);
 	}
 }
-
