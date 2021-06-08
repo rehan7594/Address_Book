@@ -1,8 +1,10 @@
 package com.addressbook;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Contact_Operations {
@@ -87,6 +89,12 @@ public class Contact_Operations {
 				break;
 			}  
 		}  
+	}
+
+	public static void searchByCityOrState(List<Contact> contact) {
+		System.out.println("Enter CityName: ");
+		String city = s.next();
+		contact.stream().filter(c -> c.getcity().equals(city)).forEach(System.out::println);
 	}
 
 	public static void countByCity(List<Contact> contact) {
