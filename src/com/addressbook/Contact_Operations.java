@@ -1,18 +1,20 @@
 package com.addressbook;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Contact_Operations {
 	static Scanner s=new Scanner(System.in);
+	//private static Set<Contact> contact = new HashSet<>();
 
-	public static void Add_Contact(List<Contact> contact) {
+	public static void Add_Contact(String fString,List<Contact> contact) {
 		Contact c=new Contact();
-		System.out.print("Add Contact  \n");
-		System.out.print("Enter First Name: ");									
-		c.setfirstName(s.next());
+
+		c.setfirstName(fString);
 		System.out.print("Enter Last Name : ");
 		c.setlastName(s.next());
 		System.out.print("Enter City : ");
@@ -27,6 +29,15 @@ public class Contact_Operations {
 		c.setemail(s.next());
 		contact.add(c);		
 
+	}
+
+	public static boolean checkDuplicate(String f_name,List<Contact> contact) {
+		for (Contact c : contact) {
+			if (c.getfirstName().equals(f_name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 
@@ -78,6 +89,18 @@ public class Contact_Operations {
 				break;
 			}  
 		}  
+	}
+
+	public static void viewPersonByCityOrState(List<Contact> contact) {
+		System.out.println("Enter CityName: ");
+		String city = s.next();
+		contact.stream().filter(c -> c.getcity().equals(city)).forEach(cn -> System.out.println("First Name : "+cn.getfirstName()+"  Last Name : "+cn.getlastName()));
+	}
+
+	public static void searchByCityOrState(List<Contact> contact) {
+		System.out.println("Enter CityName: ");
+		String city = s.next();
+		contact.stream().filter(c -> c.getcity().equals(city)).forEach(System.out::println);
 	}
 
 	public static void countByCity(List<Contact> contact) {

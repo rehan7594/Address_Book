@@ -1,7 +1,6 @@
 package com.addressbook;
 
 public class Contact {
-
 	private String firstName;
 	private String lastName;
 	private String city;
@@ -88,4 +87,4 @@ public class Contact {
 		return true;
 	}
 
-}
+}		
